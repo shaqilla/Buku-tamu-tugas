@@ -1,3 +1,17 @@
+<?php
+require 'function.php';
+?>
+
+<?php
+// memulai session
+session_start();
+
+// cek apabila tidak ada user yang login maka akandu redirect ke halaman login
+if(!isset($_SESSION['login'])) {
+    header('Location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +49,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
+                <div class="sidebar-brand-icon">
                     <i class="fas fa-school"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Zie_BukuTamu</div>
@@ -45,8 +59,20 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+             <?php
+            //  cek apabila ada user lohin maka tampilkan logout
+            if(isset($_SESSION['login'])) :
+            ?>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="logout.php">
+                    <i class="fas fa-fw fa-power-off"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li> 
@@ -64,7 +90,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="user.php">
+                <a class="nav-link" href="users.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>User</span></a>
             </li>
@@ -141,7 +167,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>

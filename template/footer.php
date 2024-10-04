@@ -1,15 +1,18 @@
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; ZieBukuTamu 2024</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
+</div>
+            <!-- End of Main Content -->
 
-    </div>
-    <!-- End of Content Wrapper -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; ZieBukuTamu 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -33,7 +36,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -64,6 +67,15 @@
                 });
             }, 4000);
         });
+
+        // ambil data id users dari tombol ganti password ke modal ganti password
+        $('#gantiPassword').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            console.log(id)
+            var modal = $(this)
+            modal.find('.modal-body #id_users').val(id)
+        })
     </script>
 </body>
 
